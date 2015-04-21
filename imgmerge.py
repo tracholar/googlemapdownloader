@@ -16,10 +16,12 @@ for x in x_range:
 		im_name = 'map_%f_%f' % (lat,long)
 		im_name = im_name.replace('.','') + '.png'
 		
-		I = Image.open(im_name)
-		
-		L = int((x - L_x)/dx)
-		T = int((y - T_y)/dy) 
-		im.paste(I,(L*dx,T*dy))
-		
+		try:
+			I = Image.open(im_name)
+			
+			L = int((x - L_x)/dx)
+			T = int((y - T_y)/dy) 
+			im.paste(I,(L*dx,T*dy))
+		except Exception:
+			pass
 im.save('bigimg.bmp')
