@@ -53,8 +53,8 @@ if __name__ == '__main__':
 	parser.add_option("-z", "--zoom", type="int", dest="zoom",
 					  help="zoom", default=10)
 	parser.add_option("-r", "--region", type="string", dest="region",
-					  help="donwload region with(Left Top, Right Bottom). e.g 94.55,40.4,94.95,40.0", 
-						default = "94.55,40.4,94.95,40.0")
+					  help="donwload region with(Left Top, Right Bottom). e.g 40.4,94.55,40.0,94.95", 
+						default = "40.4,94.55,40.0,94.95")
 	parser.add_option("-t", "--maptype", type="choice", dest="maptype",
 					  help="map type", default="satellite", 
 					  choices=["satellite","roadmap"])
@@ -68,7 +68,7 @@ if __name__ == '__main__':
 	
 	url = r'https://maps.googleapis.com/maps/api/staticmap?center={lat},{long}&zoom=%d&size=%dx%d&maptype=%s&sensor=false' % (zoom,imsize,imsize,maptype)
 	
-	L_long, T_lat, R_long, B_lat = tuple([float(i) for i in options.region.split(',')])
+	T_lat, L_long, B_lat, R_long = tuple([float(i) for i in options.region.split(',')])
 
 	# L_long = 94.55
 	# R_long = 94.95

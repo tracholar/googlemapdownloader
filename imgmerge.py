@@ -29,4 +29,4 @@ for x in x_range:
 			im.paste(I,(L*dx,T*dy))
 		except Exception:
 			pass
-im.save('bigimg.bmp')
+im.save('bigimg.png')
