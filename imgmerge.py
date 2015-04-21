@@ -2,7 +2,12 @@
 import  os, re
 from PIL import Image
 import numpy as np
+import pickle
 from googlemap import *
+
+f = open('conf','rb')
+x_range, y_range, dx, dy, L_x, T_y, R_x, B_y, zoom = pickle.load(f)
+f.close()
 
 n_X = len(x_range)
 n_Y = len(y_range)
