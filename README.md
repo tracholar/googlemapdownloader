@@ -3,8 +3,8 @@
 A tool besed on python can download google map and merge small map images to big images.
 
 ## Require
-python 2.7
-PIL
+-python 2.7
+-PIL
 
 ## Usage
 Set location region. Change the variable `L_long`,`R_long`,`T_lat`,`B_lat` values, which means the longitude of left top, right bottom 
