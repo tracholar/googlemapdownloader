@@ -10,12 +10,12 @@ PIL
 Set location region. Change the variable `L_long`,`R_long`,`T_lat`,`B_lat` values, which means the longitude of left top, right bottom 
 and latitude of left top and right bottom.
 
-  (L_long, T_lat)-----------------------------------------
-  |                                                       |
-  |                                                       |
-  |                                                       |
-  |                                                       |
-  ------------------------------------------(R_long, B_lat)
+      (L_long, T_lat)-----------------------------------------
+      |                                                       |
+      |                                                       |
+      |                                                       |
+      |                                                       |
+      ------------------------------------------(R_long, B_lat)
   
 You can also change the `zoom` value to get different resolution, see google map api.
 
