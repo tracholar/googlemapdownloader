@@ -8,8 +8,9 @@ import time
 
 imsize = 512
 zoom = 14
-url = r'https://maps.googleapis.com/maps/api/staticmap?center={center}&zoom=%d&size=%dx%d&maptype=roadmap&sensor=false' % (zoom,imsize,imsize)
-
+url = r'https://maps.googleapis.com/maps/api/staticmap?center={lat},{long}&zoom=%d&size=%dx%d&maptype=roadmap&sensor=false' % (zoom,imsize,imsize)
+# baidu map
+url = r'http://api.map.baidu.com/staticimage?center={long},{lat}&zoom=%d&width=%d&height=%d&copyright=1' % (zoom,imsize,imsize)
 center = [40.143957,94.6297456]
 
 
@@ -30,27 +31,37 @@ dy = imsize - 35
 y_range = range(T_y, B_y + imsize, dy)
 pos = []
 
+headers = {
+	'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36',
+	'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+}
 def DownloadMap():
 	# print 'df'
 	while True:
 		if len(pos)==0:
 			return
 		long,lat = pos.pop()
-		mapurl = url.replace('{center}', '%f,%f' % (lat,long))
+		mapurl = url.replace('{long}', '%f' % long).replace('{lat}', '%f' % lat)
+		
+
+		
 		ext = '%f_%f' % (lat,long)
 		ext = ext.replace('.','')
 		fn = 'map_%s.png' % ext
 		if os.path.exists(fn):
 			continue
 		
-		img = urllib.urlopen(mapurl).read()
+		
+		# mapurl = 'http://www.baidu.com'
+		req = urllib2.Request(mapurl, headers=headers)
+		img = urllib2.urlopen(req).read()
 		
 		
 		f = open(fn,'wb')
 		f.write(img)
 		f.close()
 		print lat,long
-		time.sleep(10)
+		time.sleep(15)
 	
 if __name__ == '__main__':
 	
