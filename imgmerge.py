@@ -2,7 +2,12 @@
 import  os, re
 from PIL import Image
 import numpy as np
+import pickle
 from googlemap import *
+
+f = open('conf','rb')
+x_range, y_range, dx, dy, L_x, T_y, R_x, B_y, zoom = pickle.load(f)
+f.close()
 
 n_X = len(x_range)
 n_Y = len(y_range)
@@ -16,10 +21,12 @@ for x in x_range:
 		im_name = 'map_%f_%f' % (lat,long)
 		im_name = im_name.replace('.','') + '.png'
 		
-		I = Image.open(im_name)
-		
-		L = int((x - L_x)/dx)
-		T = int((y - T_y)/dy) 
-		im.paste(I,(L*dx,T*dy))
-		
-im.save('bigimg.bmp')
+		try:
+			I = Image.open(im_name)
+			
+			L = int((x - L_x)/dx)
+			T = int((y - T_y)/dy) 
+			im.paste(I,(L*dx,T*dy))
+		except Exception:
+			pass
+im.save('bigimg.png')
