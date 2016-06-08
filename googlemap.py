@@ -80,10 +80,12 @@ if __name__ == '__main__':
 	T_y = Lat2Pixel(T_lat, zoom)
 	B_y = Lat2Pixel(B_lat, zoom)
 
+	
+	
 	dx = imsize
-	x_range = range(L_x,R_x+imsize/2,dx)
+	x_range = range(L_x + imsize/2,R_x + imsize/2, dx)
 	dy = imsize - 35
-	y_range = range(T_y, B_y + imsize/2, dy)
+	y_range = range(T_y + imsize/2, B_y + imsize/2, dy)
 
 	# save config
 	conf = (x_range, y_range, dx, dy, L_x, T_y, R_x, B_y, zoom)
